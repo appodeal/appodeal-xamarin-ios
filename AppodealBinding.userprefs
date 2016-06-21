@@ -1,0 +1,12 @@
+﻿<Properties StartupItem="AppodealBinding/AppodealBinding.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="AppodealBinding/ApiDefinition.cs">
+    <Files>
+      <File FileName="AppodealBinding/ApiDefinition.cs" Line="589" Column="29" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
