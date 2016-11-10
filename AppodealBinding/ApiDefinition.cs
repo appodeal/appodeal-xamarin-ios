@@ -272,31 +272,6 @@ namespace AppodealBinding
 		void BannerViewDidInteract (AppodealBannerView bannerView);
 	}
 
-	/* @protocol AppodealBannerViewRequestDelegate <NSObject>
-	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface AppodealBannerViewRequestDelegate
-	{
-		// @required -(void)bannerViewDidStart:(AppodealBannerView *)bannerView;
-		[Abstract]
-		[Export ("bannerViewDidStart:")]
-		void BannerViewDidStart (AppodealBannerView bannerView);
-
-		// @required -(void)requestDidStart:(AppodealBannerView *)bannerView andNetwork:(NSString *)networkName;
-		[Abstract]
-		[Export ("requestDidStart:andNetwork:")]
-		void RequestDidStart (AppodealBannerView bannerView, string networkName);
-
-		// @required -(void)requestDidFinish:(AppodealBannerView *)bannerView andNetwork:(NSString *)networkName adFilled:(BOOL)filled;
-		[Abstract]
-		[Export ("requestDidFinish:andNetwork:adFilled:")]
-		void RequestDidFinish (AppodealBannerView bannerView, string networkName, bool filled);
-
-		// @required -(void)bannerViewDidFinish:(AppodealBannerView *)bannerView adFilled:(BOOL)filled;
-		[Abstract]
-		[Export ("bannerViewDidFinish:adFilled:")]
-		void BannerViewDidFinish (AppodealBannerView bannerView, bool filled);
-	}*/
 
 	// @interface AppodealBannerView : UIView
 	[BaseType (typeof(UIView))]
@@ -310,13 +285,6 @@ namespace AppodealBinding
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
 		NSObject WeakDelegate { get; set; }
 
-		/*[Wrap ("WeakRequestDelegate")]
-		[NullAllowed]
-		AppodealBannerViewRequestDelegate RequestDelegate { get; set; }*/
-
-		/* @property (nonatomic, weak) id<AppodealBannerViewRequestDelegate> _Nullable requestDelegate;
-		[NullAllowed, Export ("requestDelegate", ArgumentSemantic.Weak)]
-		NSObject WeakRequestDelegate { get; set; }*/
 
 		// @property (readonly, getter = isReady, assign, nonatomic) BOOL ready;
 		[Export ("ready")]
@@ -497,257 +465,7 @@ namespace AppodealBinding
 		[Export ("detachFromView")]
 		void DetachFromView ();
 	}
-	/*
-	// @protocol AppodealNativeAdServiceRequestDelegate <NSObject>
-	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface AppodealNativeAdServiceRequestDelegate
-	{
-		// @required -(void)nativeDidStart:(AppodealNativeAdService *)service;
-		[Abstract]
-		[Export ("nativeDidStart:")]
-		void NativeDidStart (AppodealNativeAdService service);
-
-		// @required -(void)requestDidStart:(AppodealNativeAdService *)service andNetwork:(NSString *)networkName;
-		[Abstract]
-		[Export ("requestDidStart:andNetwork:")]
-		void RequestDidStart (AppodealNativeAdService service, string networkName);
-
-		// @required -(void)requestDidFinish:(AppodealNativeAdService *)service andNetwork:(NSString *)networkName adFilled:(BOOL)filled;
-		[Abstract]
-		[Export ("requestDidFinish:andNetwork:adFilled:")]
-		void RequestDidFinish (AppodealNativeAdService service, string networkName, bool filled);
-
-		// @required -(void)nativeDidFinish:(AppodealNativeAdService *)service adFilled:(BOOL)filled;
-		[Abstract]
-		[Export ("nativeDidFinish:adFilled:")]
-		void NativeDidFinish (AppodealNativeAdService service, bool filled);
-	}
-
-	// @protocol AppodealNativeAdServiceDelegate <NSObject>
-	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface AppodealNativeAdServiceDelegate
-	{
-		// @optional -(void)nativeAdServiceDidLoad:(AppodealNativeAd *)nativeAd;
-		[Export ("nativeAdServiceDidLoad:")]
-		void NativeAdServiceDidLoad (AppodealNativeAd nativeAd);
-
-		// @optional -(void)nativeAdServiceDidLoadSeveralAds __attribute__((deprecated("")));
-		[Export ("nativeAdServiceDidLoadSeveralAds")]
-		void NativeAdServiceDidLoadSeveralAds ();
-
-		// @optional -(void)nativeAdServiceDidFailedToLoad;
-		[Export ("nativeAdServiceDidFailedToLoad")]
-		void NativeAdServiceDidFailedToLoad ();
-	}
-
-	// @interface AppodealNativeAdService : NSObject
-	[BaseType (typeof(NSObject))]
-	interface AppodealNativeAdService
-	{
-		[Wrap ("WeakRequestDelegate")]
-		[NullAllowed]
-		AppodealNativeAdServiceRequestDelegate RequestDelegate { get; set; }
-
-		// @property (nonatomic, weak) id<AppodealNativeAdServiceRequestDelegate> _Nullable requestDelegate;
-		[NullAllowed, Export ("requestDelegate", ArgumentSemantic.Weak)]
-		NSObject WeakRequestDelegate { get; set; }
-
-		[Wrap ("WeakDelegate")]
-		[NullAllowed]
-		AppodealNativeAdServiceDelegate Delegate { get; set; }
-
-		// @property (nonatomic, weak) id<AppodealNativeAdServiceDelegate> _Nullable delegate;
-		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; set; }
-
-		// @property (readonly, getter = isReady, assign, nonatomic) BOOL ready;
-		[Export ("ready")]
-		bool Ready { [Bind ("isReady")] get; }
-
-		// -(void)loadAd;
-		[Export ("loadAd")]
-		void LoadAd ();
-
-		// -(AppodealNativeAd *)nextAd;
-		[Export ("nextAd")]
-		AppodealNativeAd NextAd { get; }
-	}
-
-	/* @interface AppodealNativeAdViewAttributes : NSObject
-	[BaseType (typeof(NSObject))]
-	interface AppodealNativeAdViewAttributes
-	{
-		// @property (assign, nonatomic) BOOL roundedIcon;
-		[Export ("roundedIcon")]
-		bool RoundedIcon { get; set; }
-
-		// @property (assign, nonatomic) BOOL sponsored;
-		[Export ("sponsored")]
-		bool Sponsored { get; set; }
-
-		// @property (assign, nonatomic) CGFloat width;
-		[Export ("width")] 
-		nfloat Width { get; set; }
-
-		// @property (assign, nonatomic) CGFloat heigth;
-		[Export ("heigth")]
-		nfloat Heigth { get; set; }
-
-		// @property (copy, nonatomic) UIFont * titleFont;
-		[Export ("titleFont", ArgumentSemantic.Copy)]
-		UIFont TitleFont { get; set; }
-
-		// @property (copy, nonatomic) UIFont * descriptionFont;
-		[Export ("descriptionFont", ArgumentSemantic.Copy)]
-		UIFont DescriptionFont { get; set; }
-
-		// @property (copy, nonatomic) UIFont * subtitleFont;
-		[Export ("subtitleFont", ArgumentSemantic.Copy)]
-		UIFont SubtitleFont { get; set; }
-
-		// @property (copy, nonatomic) UIFont * buttonTitleFont;
-		[Export ("buttonTitleFont", ArgumentSemantic.Copy)]
-		UIFont ButtonTitleFont { get; set; }
-
-		// @property (copy, nonatomic) UIColor * titleFontColor;
-		[Export ("titleFontColor", ArgumentSemantic.Copy)]
-		UIColor TitleFontColor { get; set; }
-
-		// @property (copy, nonatomic) UIColor * descriptionFontColor;
-		[Export ("descriptionFontColor", ArgumentSemantic.Copy)]
-		UIColor DescriptionFontColor { get; set; }
-
-		// @property (copy, nonatomic) UIColor * subtitleColor;
-		[Export ("subtitleColor", ArgumentSemantic.Copy)]
-		UIColor SubtitleColor { get; set; }
-
-		// @property (copy, nonatomic) UIColor * buttonColor;
-		[Export ("buttonColor", ArgumentSemantic.Copy)]
-		UIColor ButtonColor { get; set; }
-
-		// @property (copy, nonatomic) UIColor * starRatingColor;
-		[Export ("starRatingColor", ArgumentSemantic.Copy)]
-		UIColor StarRatingColor { get; set; }
-	}
-
-	// @interface AppodealNativeAdView : UIView
-	[BaseType (typeof(UIView))]
-	interface AppodealNativeAdView
-	{
-		// @property (readonly, assign, nonatomic) AppodealNativeAdViewType type;
-		[Export ("type", ArgumentSemantic.Assign)]
-		AppodealNativeAdViewType Type { get; }
-
-		// @property (nonatomic, weak) UIViewController * _Nullable rootViewController;
-		[NullAllowed, Export ("rootViewController", ArgumentSemantic.Weak)]
-		UIViewController RootViewController { get; set; }
-
-		// @property (assign, nonatomic) BOOL autoplayEnabled;
-		[Export ("autoplayEnabled")]
-		bool AutoplayEnabled { get; set; }
-
-		// +(instancetype _Nonnull)nativeAdViewWithType:(AppodealNativeAdViewType)type andNativeAd:(AppodealNativeAd * _Nonnull)ad andAttributes:(AppodealNativeAdViewAttributes * _Nullable)attributes rootViewController:(UIViewController * _Nonnull)controller;
-		[Static]
-		[Export ("nativeAdViewWithType:andNativeAd:andAttributes:rootViewController:")]
-		AppodealNativeAdView NativeAdViewWithType (AppodealNativeAdViewType type, AppodealNativeAd ad, [NullAllowed] AppodealNativeAdViewAttributes attributes, UIViewController controller);
-	}
-
-	// @interface AppodealNativeAd (UIView)
-	[Category]
-	[BaseType (typeof(UIView))]
-	interface UIView_AppodealNativeAd
-	{
-		// -(AppodealNativeAd *)appodeal_attachedNativeAd;
-		[Static]
-		[Export ("appodeal_attachedNativeAd")]
-		AppodealNativeAd Appodeal_attachedNativeAd { get; }
-	}
-
-	// @interface AppodealAdChoicesView : UIView
-	[BaseType (typeof(UIView))]
-	interface AppodealAdChoicesView
-	{
-		// -(instancetype)initWithNativeAd:(AppodealNativeAd *)nativeAd;
-		[Export ("initWithNativeAd:")]
-		IntPtr Constructor (AppodealNativeAd nativeAd);
-
-		// -(void)setBackgroundColor:(UIColor *)backgroundColor;
-		[Export ("setBackgroundColor:")]
-		void SetBackgroundColor (UIColor backgroundColor);
-	}
-
-	// @protocol AppodealNativeMediaViewDelegate <NSObject>
-	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface AppodealNativeMediaViewDelegate
-	{
-		// @optional -(void)mediaViewReady;
-		[Export ("mediaViewReady")]
-		void MediaViewReady ();
-
-		// @optional -(void)mediaViewError;
-		[Export ("mediaViewError")]
-		void MediaViewError ();
-
-		// @optional -(void)mediaViewStartPlaying;
-		[Export ("mediaViewStartPlaying")]
-		void MediaViewStartPlaying ();
-
-		// @optional -(void)mediaViewPresentFullScreen;
-		[Export ("mediaViewPresentFullScreen")]
-		void MediaViewPresentFullScreen ();
-
-		// @optional -(void)mediaViewCompleteVideoPlaying;
-		[Export ("mediaViewCompleteVideoPlaying")]
-		void MediaViewCompleteVideoPlaying ();
-
-		// @optional -(void)mediaViewSkip;
-		[Export ("mediaViewSkip")]
-		void MediaViewSkip ();
-	}
-
-	// @interface AppodealNativeMediaView : UIView
-	[BaseType (typeof(UIView))]
-	interface AppodealNativeMediaView
-	{
-		[Wrap ("WeakDelegate")]
-		AppodealNativeMediaViewDelegate Delegate { get; set; }
-
-		// @property (nonatomic, strong) id<AppodealNativeMediaViewDelegate> delegate;
-		[NullAllowed, Export ("delegate", ArgumentSemantic.Strong)]
-		NSObject WeakDelegate { get; set; }
-
-		// @property (assign, nonatomic) BOOL fullscreenSupport;
-		[Export ("fullscreenSupport")]
-		bool FullscreenSupport { get; set; }
-
-		// -(instancetype)initWithNativeAd:(AppodealNativeAd *)nativeAd andRootViewController:(UIViewController *)controller;
-		[Export ("initWithNativeAd:andRootViewController:")]
-		IntPtr Constructor (AppodealNativeAd nativeAd, UIViewController controller);
-
-		// -(void)prepareToPlay;
-		[Export ("prepareToPlay")]
-		void PrepareToPlay ();
-
-		// -(void)play;
-		[Export ("play")]
-		void Play ();
-
-		// -(void)pause;
-		[Export ("pause")]
-		void Pause ();
-
-		// -(void)setMute:(BOOL)mute;
-		[Export ("setMute:")]
-		void SetMute (bool mute);
-
-		// -(void)stop;
-		[Export ("stop")]
-		void Stop ();
-	}
-	*/
+	
 	// @interface Appodeal : NSObject
 	[BaseType (typeof(NSObject))]
 	[DisableDefaultCtor]
@@ -807,11 +525,6 @@ namespace AppodealBinding
 		[Static]
 		[Export ("setRewardedVideoDelegate:")]
 		void SetRewardedVideoDelegate (AppodealRewardedVideoDelegate rewardedVideoDelegate);
-
-		/* +(void)setRequestDelgate:(id<AppodealRequestDelegate>)requestDelegate;
-		[Static]
-		[Export ("setRequestDelgate:")]
-		void SetRequestDelgate (AppodealRequestDelegate requestDelegate);*/
 
 		// +(UIView *)banner;
 		[Static]
@@ -940,30 +653,5 @@ namespace AppodealBinding
 		void SetUserInterests (string interests);
 	}
 
-	/* @protocol AppodealRequestDelegate <NSObject>
-	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface AppodealRequestDelegate
-	{
-		// @required -(void)waterfallDidStart:(AppodealAdType)adType;
-		[Abstract]
-		[Export ("waterfallDidStart:")]
-		void WaterfallDidStart (AppodealAdType adType);
-
-		// @required -(void)requestDidStartWithType:(AppodealAdType)adType andNetwork:(NSString *)networkName;
-		[Abstract]
-		[Export ("requestDidStartWithType:andNetwork:")]
-		void RequestDidStartWithType (AppodealAdType adType, string networkName);
-
-		// @required -(void)requestDidFinishWithType:(AppodealAdType)adType andNetwork:(NSString *)networkName adFilled:(BOOL)filled;
-		[Abstract]
-		[Export ("requestDidFinishWithType:andNetwork:adFilled:")]
-		void RequestDidFinishWithType (AppodealAdType adType, string networkName, bool filled);
-
-		// @required -(void)waterfallDidFinish:(AppodealAdType)adType adFilled:(BOOL)filled;
-		[Abstract]
-		[Export ("waterfallDidFinish:adFilled:")]
-		void WaterfallDidFinish (AppodealAdType adType, bool filled);
-	}*/
 }
 
