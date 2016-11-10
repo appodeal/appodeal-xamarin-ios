@@ -54,34 +54,31 @@ namespace AppodealBinding
 		void BannerDidShow ();
 	}
 
-	// @protocol AppodealVideoDelegate <NSObject>
+	// @protocol AppodealSkippableVideoDelegate <NSObject>
 	[Protocol, Model]
 	[BaseType (typeof(NSObject))]
-	interface AppodealVideoDelegate
+	interface AppodealSkippableVideoDelegate
 	{
 		// @optional -(void)videoDidLoadAd;
-		[Export ("videoDidLoadAd")]
-		void VideoDidLoadAd ();
+		[Export ("skippableVideoDidLoadAd")]
+		void SkippableVideoDidLoadAd ();
 
 		// @optional -(void)videoDidFailToLoadAd;
-		[Export ("videoDidFailToLoadAd")]
-		void VideoDidFailToLoadAd ();
+		[Export ("skippableVideoDidFailToLoadAd")]
+		void SkippableVideoDidFailToLoadAd ();
 
 		// @optional -(void)videoDidPresent;
-		[Export ("videoDidPresent")]
-		void VideoDidPresent ();
+		[Export ("skippableVideoDidPresent")]
+		void SkippableVideoDidPresent ();
 
 		// @optional -(void)videoWillDismiss;
-		[Export ("videoWillDismiss")]
-		void VideoWillDismiss ();
+		[Export ("skippableVideoWillDismiss")]
+		void SkippableVideoWillDismiss ();
 
 		// @optional -(void)videoDidFinish;
-		[Export ("videoDidFinish")]
-		void VideoDidFinish ();
+		[Export ("skippableVideoDidFinish")]
+		void SkippableVideoDidFinish ();
 
-		// @optional -(void)videoDidClick;
-		[Export ("videoDidClick")]
-		void VideoDidClick ();
 	}
 
 	// @protocol AppodealRewardedVideoDelegate <NSObject>
