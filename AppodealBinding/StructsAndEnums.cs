@@ -38,6 +38,46 @@ namespace AppodealBinding
 	}
 
 	[Native]
+	public enum APDFramework : ulong
+	{
+		APDFrameworkNative = 1,
+	    APDFrameworkUnity,
+	    APDFrameworkCocos2d,
+	    APDFrameworkMarmalade,
+	    APDFrameworkPhoneGap,
+	    APDFrameworkGiderosMobile,
+	    APDFrameworkAdobeAir,
+	    APDFrameworkCordova,
+	    APDFrameworkXamarin,
+	    APDFrameworkGameMaker,
+	    APDFrameworkMonkeyX,
+	    APDFrameworkSC2,
+	    APDFrameworkLibGDX,
+	    APDFrameworkQt,
+	    APDFrameworkUE4,
+	    APDFrameworkReactNative,
+	    APDFrameworkCorona,
+	    APDFrameworkStencyl,
+	    APDFrameworkSDKBox
+	}
+
+	[Native]
+	public enum APDMediaViewType : ulong
+	{
+		APDMediaViewTypeMainImage = 0,
+	    APDMediaViewTypeIcon
+	}
+
+	[Native]
+	public enum APDNativeAdType : ulong
+	{
+		APDNativeAdTypeAuto = 0,
+	    APDNativeAdTypeVideo,
+	    APDNativeAdTypeNoVideo
+	}
+
+
+	[Native]
 	public enum AppodealUserGender : ulong
 	{
 		Other = 0,
@@ -96,15 +136,6 @@ namespace AppodealBinding
 	}
 
 	[Native]
-	public enum AppodealNativeAdViewType : ulong
-	{
-		NewsFeed = 1,
-		ContentStream,
-		AppodealNativeAdType320x50,
-		AppodealNativeAdType728x90
-	}
-
-	[Native]
 	public enum AppodealAdType : ulong
 	{
 		Interstitial = 1 << 0,
@@ -115,7 +146,7 @@ namespace AppodealBinding
 		RewardedVideo = 1 << 4,
 		Mrec = 1 << 5,
 		NonSkippableVideo = RewardedVideo,
-		All = Interstitial | SkippableVideo | Banner | NativeAd | RewardedVideo
+		All = Interstitial | SkippableVideo | Banner | NativeAd | RewardedVideo | Mrec
 	}
 
 	[Native]

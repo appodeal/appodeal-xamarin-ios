@@ -272,7 +272,7 @@ namespace AppodealBinding
 		void BannerViewDidInteract (AppodealBannerView bannerView);
 	}
 
-	// @protocol AppodealBannerViewRequestDelegate <NSObject>
+	/* @protocol AppodealBannerViewRequestDelegate <NSObject>
 	[Protocol, Model]
 	[BaseType (typeof(NSObject))]
 	interface AppodealBannerViewRequestDelegate
@@ -296,7 +296,7 @@ namespace AppodealBinding
 		[Abstract]
 		[Export ("bannerViewDidFinish:adFilled:")]
 		void BannerViewDidFinish (AppodealBannerView bannerView, bool filled);
-	}
+	}*/
 
 	// @interface AppodealBannerView : UIView
 	[BaseType (typeof(UIView))]
@@ -310,13 +310,13 @@ namespace AppodealBinding
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
 		NSObject WeakDelegate { get; set; }
 
-		[Wrap ("WeakRequestDelegate")]
+		/*[Wrap ("WeakRequestDelegate")]
 		[NullAllowed]
-		AppodealBannerViewRequestDelegate RequestDelegate { get; set; }
+		AppodealBannerViewRequestDelegate RequestDelegate { get; set; }*/
 
-		// @property (nonatomic, weak) id<AppodealBannerViewRequestDelegate> _Nullable requestDelegate;
+		/* @property (nonatomic, weak) id<AppodealBannerViewRequestDelegate> _Nullable requestDelegate;
 		[NullAllowed, Export ("requestDelegate", ArgumentSemantic.Weak)]
-		NSObject WeakRequestDelegate { get; set; }
+		NSObject WeakRequestDelegate { get; set; }*/
 
 		// @property (readonly, getter = isReady, assign, nonatomic) BOOL ready;
 		[Export ("ready")]
@@ -340,9 +340,9 @@ namespace AppodealBinding
 		IntPtr Constructor (UIViewController rootViewController);
 	}
 
-	// @interface AppodealImage : NSObject
+	// @interface APDImage : NSObject
 	[BaseType (typeof(NSObject))]
-	interface AppodealImage
+	interface APDImage
 	{
 		// @property (readonly, assign, nonatomic) CGSize size;
 		[Export ("size", ArgumentSemantic.Assign)]
@@ -353,23 +353,101 @@ namespace AppodealBinding
 		NSUrl ImageUrl { get; }
 	}
 
+	// @interface APDNativeAdLoader : NSObject
+	[BaseType(typeof(NSObject))]
+	interface APDNativeAdLoader
+	{
+		[Wrap("WeakDelegate")]
+		APDNativeAdLoaderDelegate Delegate { get; set; }
+
+		// @property (weak, nonatomic) id<APDNativeAdLoaderDelegate> delegate;
+		[NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
+		NSObject WeakDelegate { get; set; }
+
+		// - (void)loadAdWithType:(APDNativeAdType)type;
+		[Export("loadAdWithType:")]
+		void LoadAdWithType(APDNativeAdType type);
+	}
+
 	// @protocol AppodealNativeAdDelegate <NSObject>
 	[Protocol, Model]
 	[BaseType (typeof(NSObject))]
-	interface AppodealNativeAdDelegate
+	interface APDNativeAdLoaderDelegate
 	{
-		// @optional -(void)nativeAdDidClick:(AppodealNativeAd *)nativeAd;
-		[Export ("nativeAdDidClick:")]
-		void NativeAdDidClick (AppodealNativeAd nativeAd);
+		// - (void)nativeAdLoader:(APDNativeAdLoader *)loader didLoadNativeAd:(APDNativeAd *)nativeAd;
+		[Export ("nativeAdLoader:didLoadNativeAd:")]
+		void NativeAdLoader (APDNativeAdLoader loader, APDNativeAd nativeAd);
 
-		// @optional -(void)nativeAdDidPresent:(AppodealNativeAd *)nativeAd;
-		[Export ("nativeAdDidPresent:")]
-		void NativeAdDidPresent (AppodealNativeAd nativeAd);
+		// - (void)nativeAdLoader:(APDNativeAdLoader *)loader didFailToLoadWithError:(NSError *)error;
+		[Export ("nativeAdLoader:didFailToLoadWithError:")]
+		void NativeAdLoader(APDNativeAdLoader loader, NSError error);
 	}
+
+	[BaseType(typeof(UIView))]
+	interface APDMediaView
+	{
+		[Wrap("WeakDelegate")]
+		APDMediaViewDelegate Delegate { get; set; }
+
+		// @property (nonatomic, weak) id<APDMediaViewDelegate> delegate;
+		[NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
+		NSObject WeakDelegate { get; set; }
+
+		// @property (nonatomic, assign) APDMediaViewType type;
+		[Export("type", ArgumentSemantic.Assign)]
+		APDMediaViewType Type { get; }
+
+		// @property (nonatomic, assign) BOOL skippable;
+		[Export("skippable")]
+		bool Skippable { get; }
+
+		// @property (nonatomic, assign) BOOL muted;
+		[Export("muted")]
+		bool Muted { get; }
+
+		// @property (nonatomic, assign) BOOL useDefaultMuteButton;
+		[Export("useDefaultMuteButton")]
+		bool UseDefaultMuteButton { get; }
+
+		// - (void)setNativeAd:(APDNativeAd *)nativeAd rootViewController:(UIViewController *)controller;
+		[Export("setNativeAd:rootViewController:")]
+		void SetNativeAd(APDNativeAd nativeAd, UIViewController controller);
+
+		// - (void)clearView;
+		[Export("clearView")]
+		void ClearView();
+
+		// - (void)initWithFrame;
+		[Export("initWithFrame:")]
+		IntPtr Constructor(CGRect frame);
+	}
+
+	// @protocol APDMediaViewDelegate <NSObject>
+	[Protocol, Model]
+	[BaseType(typeof(NSObject))]
+	interface APDMediaViewDelegate
+	{
+		// - (void)mediaViewStartPlaying:(APDMediaView *)mediaView;
+		[Export("mediaViewStartPlaying:")]
+		void MediaViewStartPlaying(APDMediaView mediaView);
+
+		// - (void)mediaViewFinishPlaying:(APDMediaView *)mediaView videoWasSkipped:(BOOL)wasSkipped;
+		[Export("mediaViewFinishPlaying:videoWasSkipped:")]
+		void MediaViewFinishPlaying(APDMediaView mediaView, bool wasSkipped);
+
+		// - (void)mediaView:(APDMediaView *)mediaView didPresentFullScreenView:(UIView *)presentedView;
+		[Export("mediaView:didPresentFullScreenView:")]
+		void MediaView(APDMediaView mediaView, UIView presentedView);
+
+		// - (void)mediaViewDidDismissFullScreen:(APDMediaView *)mediaView;
+		[Export("mediaViewDidDismissFullScreen:")]
+		void MediaViewDidDismissFullScreen(APDMediaView mediaView);
+	}
+
 
 	// @interface AppodealNativeAd : NSObject
 	[BaseType (typeof(NSObject))]
-	interface AppodealNativeAd
+	interface APDNativeAd
 	{
 		// @property (readonly, copy, nonatomic) NSString * title;
 		[Export ("title")]
@@ -395,21 +473,21 @@ namespace AppodealBinding
 		[Export ("starRating", ArgumentSemantic.Copy)]
 		NSNumber StarRating { get; }
 
-		// @property (readonly, nonatomic, strong) AppodealImage * image;
-		[Export ("image", ArgumentSemantic.Strong)]
-		AppodealImage Image { get; }
+		// @property (readonly, nonatomic, strong) AppodealImage * mainImage;
+		[Export ("mainImage", ArgumentSemantic.Strong)]
+		APDImage MainImage { get; }
 
-		// @property (readonly, nonatomic, strong) AppodealImage * icon;
-		[Export ("icon", ArgumentSemantic.Strong)]
-		AppodealImage Icon { get; }
+		// @property (readonly, nonatomic, strong) AppodealImage * iconImage;
+		[Export ("iconImage", ArgumentSemantic.Strong)]
+		APDImage IconImage { get; }
 
-		[Wrap ("WeakDelegate")]
-		[NullAllowed]
-		AppodealNativeAdDelegate Delegate { get; set; }
+		// @property (nonatomic, strong, readonly) UIView * adChoicesView;
+		[Export("adChoicesView", ArgumentSemantic.Strong)]
+		UIView AdChoicesView { get; }
 
-		// @property (nonatomic, weak) id<AppodealNativeAdDelegate> _Nullable delegate;
-		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; set; }
+		// @property (nonatomic, readonly, getter=isContainsVideo) BOOL containsVideo;
+		[Export("containsVideo", ArgumentSemantic.Strong)]
+		bool Ready { [Bind("isContainsVideo")] get; }
 
 		// -(void)attachToView:(UIView *)view viewController:(UIViewController *)viewController;
 		[Export ("attachToView:viewController:")]
@@ -418,16 +496,8 @@ namespace AppodealBinding
 		// -(void)detachFromView;
 		[Export ("detachFromView")]
 		void DetachFromView ();
-
-		// -(void)sendClick __attribute__((deprecated("")));
-		[Export ("sendClick")]
-		void SendClick ();
-
-		// -(void)sendImpression __attribute__((deprecated("")));
-		[Export ("sendImpression")]
-		void SendImpression ();
 	}
-
+	/*
 	// @protocol AppodealNativeAdServiceRequestDelegate <NSObject>
 	[Protocol, Model]
 	[BaseType (typeof(NSObject))]
@@ -505,7 +575,7 @@ namespace AppodealBinding
 		AppodealNativeAd NextAd { get; }
 	}
 
-	// @interface AppodealNativeAdViewAttributes : NSObject
+	/* @interface AppodealNativeAdViewAttributes : NSObject
 	[BaseType (typeof(NSObject))]
 	interface AppodealNativeAdViewAttributes
 	{
@@ -518,7 +588,7 @@ namespace AppodealBinding
 		bool Sponsored { get; set; }
 
 		// @property (assign, nonatomic) CGFloat width;
-		[Export ("width")]
+		[Export ("width")] 
 		nfloat Width { get; set; }
 
 		// @property (assign, nonatomic) CGFloat heigth;
@@ -677,7 +747,7 @@ namespace AppodealBinding
 		[Export ("stop")]
 		void Stop ();
 	}
-
+	*/
 	// @interface Appodeal : NSObject
 	[BaseType (typeof(NSObject))]
 	[DisableDefaultCtor]
@@ -703,20 +773,15 @@ namespace AppodealBinding
 		[Export ("isAutocacheEnabled:")]
 		bool IsAutocacheEnabled (AppodealAdType types);
 
-		// +(void)initializeWithApiKey:(NSString *)apiKey __attribute__((deprecated("")));
-		[Static]
-		[Export ("initializeWithApiKey:")]
-		void InitializeWithApiKey (string apiKey);
-
 		// +(void)initializeWithApiKey:(NSString *)apiKey types:(AppodealAdType)types;
 		[Static]
 		[Export ("initializeWithApiKey:types:")]
 		void InitializeWithApiKey (string apiKey, AppodealAdType types);
 
-		// +(void)deinitialize;
+		// + (void)setFramework:(APDFramework)framework;
 		[Static]
-		[Export ("deinitialize")]
-		void Deinitialize ();
+		[Export("setFramework:")]
+		void SetFramework(APDFramework framework);
 
 		// +(BOOL)isInitalized;
 		[Static]
@@ -743,10 +808,10 @@ namespace AppodealBinding
 		[Export ("setRewardedVideoDelegate:")]
 		void SetRewardedVideoDelegate (AppodealRewardedVideoDelegate rewardedVideoDelegate);
 
-		// +(void)setRequestDelgate:(id<AppodealRequestDelegate>)requestDelegate;
+		/* +(void)setRequestDelgate:(id<AppodealRequestDelegate>)requestDelegate;
 		[Static]
 		[Export ("setRequestDelgate:")]
-		void SetRequestDelgate (AppodealRequestDelegate requestDelegate);
+		void SetRequestDelgate (AppodealRequestDelegate requestDelegate);*/
 
 		// +(UIView *)banner;
 		[Static]
@@ -758,10 +823,10 @@ namespace AppodealBinding
 		[Export ("showAd:rootViewController:")]
 		bool ShowAd (AppodealShowStyle style, UIViewController rootViewController);
 
-		// +(BOOL)showAdWithPriceFloor:(AppodealShowStyle)style rootViewController:(UIViewController *)rootViewController;
+		// + (BOOL)showAd:(AppodealShowStyle)style forPlacement:(NSString *)placement rootViewController:(UIViewController *)rootViewController;
 		[Static]
-		[Export ("showAdWithPriceFloor:rootViewController:")]
-		bool ShowAdWithPriceFloor (AppodealShowStyle style, UIViewController rootViewController);
+		[Export ("showAd:forPlacement:rootViewController:")]
+		bool showAd (AppodealShowStyle style, string placement, UIViewController rootViewController);
 
 		// +(void)cacheAd:(AppodealAdType)type;
 		[Static]
@@ -773,10 +838,10 @@ namespace AppodealBinding
 		[Export ("hideBanner")]
 		void HideBanner ();
 
-		// +(void)setDebugEnabled:(BOOL)debugEnabled __attribute__((deprecated("")));
+		// +(void)setDebugEnabled:(BOOL)debugEnabled;
 		[Static]
-		[Export ("setDebugEnabled:")]
-		void SetDebugEnabled (bool debugEnabled);
+		[Export("setDebugEnabled:")]
+		void SetDebugEnabled(bool debugEnabled);
 
 		// +(void)setTestingEnabled:(BOOL)testingEnabled;
 		[Static]
@@ -793,10 +858,25 @@ namespace AppodealBinding
 		[Export ("isReadyForShowWithStyle:")]
 		bool IsReadyForShowWithStyle (AppodealShowStyle showStyle);
 
-		// +(BOOL)isReadyWithPriceFloorForShowWithStyle:(AppodealShowStyle)showStyle;
+		// + (void)setCustomRule:(NSDictionary*)customRule;
 		[Static]
-		[Export ("isReadyWithPriceFloorForShowWithStyle:")]
-		bool IsReadyWithPriceFloorForShowWithStyle (AppodealShowStyle showStyle);
+		[Export("setCustomRule:")]
+		void SetCustomRule(NSDictionary customRule);
+
+		// + (void)setSmartBannersEnabled:(BOOL)smartBannerEnabled;
+		[Static]
+		[Export("setSmartBannersEnabled:")]
+		void SetSmartBannersEnabled(bool smartBannerEnabled);
+
+		// + (void)setBannerBackgroundVisible:(BOOL)bannerBackgroundVisible;
+		[Static]
+		[Export("setBannerBackgroundVisible:")]
+		void SetBannerBackgroundVisible(bool bannerBackgroundVisible);
+
+		// + (void)setBannerAnimationEnabled:(BOOL)bannerAnimationEnabled;
+		[Static]
+		[Export("setBannerAnimationEnabled:")]
+		void SetBannerAnimationEnabled(bool bannerAnimationEnabled);
 
 		// +(void)confirmUsage:(AppodealAdType)adTypes;
 		[Static]
@@ -813,16 +893,6 @@ namespace AppodealBinding
 		[Static]
 		[Export ("setUserId:")]
 		void SetUserId (string userId);
-
-		// +(void)setUserVkId:(NSString *)vkId;
-		[Static]
-		[Export ("setUserVkId:")]
-		void SetUserVkId (string vkId);
-
-		// +(void)setUserFacebookId:(NSString *)facebookId;
-		[Static]
-		[Export ("setUserFacebookId:")]
-		void SetUserFacebookId (string facebookId);
 
 		// +(void)setUserEmail:(NSString *)email;
 		[Static]
@@ -870,7 +940,7 @@ namespace AppodealBinding
 		void SetUserInterests (string interests);
 	}
 
-	// @protocol AppodealRequestDelegate <NSObject>
+	/* @protocol AppodealRequestDelegate <NSObject>
 	[Protocol, Model]
 	[BaseType (typeof(NSObject))]
 	interface AppodealRequestDelegate
@@ -894,6 +964,6 @@ namespace AppodealBinding
 		[Abstract]
 		[Export ("waterfallDidFinish:adFilled:")]
 		void WaterfallDidFinish (AppodealAdType adType, bool filled);
-	}
+	}*/
 }
 

@@ -1,10 +1,24 @@
-﻿<Properties StartupItem="AppodealBinding/AppodealBinding.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="AppodealBinding/ApiDefinition.cs">
     <Files>
-      <File FileName="AppodealBinding/ApiDefinition.cs" Line="589" Column="29" />
+      <File FileName="AppodealBinding/ApiDefinition.cs" Line="425" Column="34" />
+      <File FileName="AppodealBinding/StructsAndEnums.cs" Line="59" Column="24" />
+      <File FileName="AppodealBinding/Appodeal.linkwith.cs" Line="1" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="AppodealBinding" expanded="True">
+            <Node name="AppodealBinding" expanded="True">
+              <Node name="ApiDefinition.cs" selected="True" />
+              <Node name="Appodeal.a" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
