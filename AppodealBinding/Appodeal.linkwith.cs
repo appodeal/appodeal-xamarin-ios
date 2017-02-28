@@ -6,6 +6,5 @@
 // framework and select "Properties" to change the LinkWith values.
 
 using ObjCRuntime;
-using System;
 
 [assembly: LinkWith("Appodeal.a", LinkTarget.ArmV7 | LinkTarget.ArmV7s | LinkTarget.Simulator | LinkTarget.Simulator64 | LinkTarget.Arm64 | LinkTarget.x86_64 | LinkTarget.ArmV6 | LinkTarget.i386, SmartLink = true, Frameworks = "AdSupport AudioToolbox AVFoundation CFNetwork CoreFoundation CoreGraphics CoreImage CoreLocation CoreMedia CoreMotion CoreTelephony EventKit EventKitUI JavaScriptCore MediaPlayer MessageUI MobileCoreServices QuartzCore SafariServices Security Social StoreKit SystemConfiguration Twitter UIKit WebKit CoreBluetooth GLKit", ForceLoad = true, LinkerFlags = "-lz -lsqlite3 -lxml2.2 -lc++ -ObjC")]

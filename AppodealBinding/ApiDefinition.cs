@@ -8,230 +8,230 @@ namespace AppodealBinding
 {
 	// @protocol AppodealInterstitialDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType(typeof(NSObject))]
 	interface AppodealInterstitialDelegate
 	{
 		// @optional -(void)interstitialDidLoadAd;
-		[Export ("interstitialDidLoadAd")]
-		void InterstitialDidLoadAd ();
+		[Export("interstitialDidLoadAd")]
+		void InterstitialDidLoadAd();
 
 		// @optional -(void)interstitialDidFailToLoadAd;
-		[Export ("interstitialDidFailToLoadAd")]
-		void InterstitialDidFailToLoadAd ();
+		[Export("interstitialDidFailToLoadAd")]
+		void InterstitialDidFailToLoadAd();
 
 		// @optional -(void)interstitialWillPresent;
-		[Export ("interstitialWillPresent")]
-		void InterstitialWillPresent ();
+		[Export("interstitialWillPresent")]
+		void InterstitialWillPresent();
 
 		// @optional -(void)interstitialDidDismiss;
-		[Export ("interstitialDidDismiss")]
-		void InterstitialDidDismiss ();
+		[Export("interstitialDidDismiss")]
+		void InterstitialDidDismiss();
 
 		// @optional -(void)interstitialDidClick;
-		[Export ("interstitialDidClick")]
-		void InterstitialDidClick ();
+		[Export("interstitialDidClick")]
+		void InterstitialDidClick();
 	}
 
 	// @protocol AppodealBannerDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType(typeof(NSObject))]
 	interface AppodealBannerDelegate
 	{
 		// @optional -(void)bannerDidLoadAd;
-		[Export ("bannerDidLoadAd")]
-		void BannerDidLoadAd ();
+		[Export("bannerDidLoadAd")]
+		void BannerDidLoadAd();
 
 		// @optional -(void)bannerDidFailToLoadAd;
-		[Export ("bannerDidFailToLoadAd")]
-		void BannerDidFailToLoadAd ();
+		[Export("bannerDidFailToLoadAd")]
+		void BannerDidFailToLoadAd();
 
 		// @optional -(void)bannerDidClick;
-		[Export ("bannerDidClick")]
-		void BannerDidClick ();
+		[Export("bannerDidClick")]
+		void BannerDidClick();
 
 		// @optional -(void)bannerDidShow;
-		[Export ("bannerDidShow")]
-		void BannerDidShow ();
+		[Export("bannerDidShow")]
+		void BannerDidShow();
 	}
 
 	// @protocol AppodealSkippableVideoDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType(typeof(NSObject))]
 	interface AppodealSkippableVideoDelegate
 	{
 		// @optional -(void)videoDidLoadAd;
-		[Export ("skippableVideoDidLoadAd")]
-		void SkippableVideoDidLoadAd ();
+		[Export("skippableVideoDidLoadAd")]
+		void SkippableVideoDidLoadAd();
 
 		// @optional -(void)videoDidFailToLoadAd;
-		[Export ("skippableVideoDidFailToLoadAd")]
-		void SkippableVideoDidFailToLoadAd ();
+		[Export("skippableVideoDidFailToLoadAd")]
+		void SkippableVideoDidFailToLoadAd();
 
 		// @optional -(void)videoDidPresent;
-		[Export ("skippableVideoDidPresent")]
-		void SkippableVideoDidPresent ();
+		[Export("skippableVideoDidPresent")]
+		void SkippableVideoDidPresent();
 
 		// @optional -(void)videoWillDismiss;
-		[Export ("skippableVideoWillDismiss")]
-		void SkippableVideoWillDismiss ();
+		[Export("skippableVideoWillDismiss")]
+		void SkippableVideoWillDismiss();
 
 		// @optional -(void)videoDidFinish;
-		[Export ("skippableVideoDidFinish")]
-		void SkippableVideoDidFinish ();
+		[Export("skippableVideoDidFinish")]
+		void SkippableVideoDidFinish();
 
 	}
 
 	// @protocol AppodealRewardedVideoDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType(typeof(NSObject))]
 	interface AppodealRewardedVideoDelegate
 	{
 		// @optional -(void)rewardedVideoDidLoadAd;
-		[Export ("rewardedVideoDidLoadAd")]
-		void RewardedVideoDidLoadAd ();
+		[Export("rewardedVideoDidLoadAd")]
+		void RewardedVideoDidLoadAd();
 
 		// @optional -(void)rewardedVideoDidFailToLoadAd;
-		[Export ("rewardedVideoDidFailToLoadAd")]
-		void RewardedVideoDidFailToLoadAd ();
+		[Export("rewardedVideoDidFailToLoadAd")]
+		void RewardedVideoDidFailToLoadAd();
 
 		// @optional -(void)rewardedVideoDidPresent;
-		[Export ("rewardedVideoDidPresent")]
-		void RewardedVideoDidPresent ();
+		[Export("rewardedVideoDidPresent")]
+		void RewardedVideoDidPresent();
 
 		// @optional -(void)rewardedVideoWillDismiss;
-		[Export ("rewardedVideoWillDismiss")]
-		void RewardedVideoWillDismiss ();
+		[Export("rewardedVideoWillDismiss")]
+		void RewardedVideoWillDismiss();
 
 		// @optional -(void)rewardedVideoDidFinish:(NSUInteger)rewardAmount name:(NSString *)rewardName;
-		[Export ("rewardedVideoDidFinish:name:")]
-		void RewardedVideoDidFinish (nuint rewardAmount, string rewardName);
+		[Export("rewardedVideoDidFinish:name:")]
+		void RewardedVideoDidFinish(nuint rewardAmount, string rewardName);
 
 		// @optional -(void)rewardedVideoDidClick;
-		[Export ("rewardedVideoDidClick")]
-		void RewardedVideoDidClick ();
+		[Export("rewardedVideoDidClick")]
+		void RewardedVideoDidClick();
 	}
 
 	[Static]
 	partial interface NetworkNames
 	{
 		// extern NSString *const kAppodealAdColonyNetworkName;
-		[Field ("kAppodealAdColonyNetworkName", "__Internal")]
+		[Field("kAppodealAdColonyNetworkName", "__Internal")]
 		NSString kAppodealAdColonyNetworkName { get; }
 
 		// extern NSString *const kAppodealAdMobNetworkName;
-		[Field ("kAppodealAdMobNetworkName", "__Internal")]
+		[Field("kAppodealAdMobNetworkName", "__Internal")]
 		NSString kAppodealAdMobNetworkName { get; }
 
 		// extern NSString *const kAppodealAdMobVideoNetworkName;
-		[Field ("kAppodealAdMobVideoNetworkName", "__Internal")]
+		[Field("kAppodealAdMobVideoNetworkName", "__Internal")]
 		NSString kAppodealAdMobVideoNetworkName { get; }
 
 		// extern NSString *const kAppodealAmazonAdsNetworkName;
-		[Field ("kAppodealAmazonAdsNetworkName", "__Internal")]
+		[Field("kAppodealAmazonAdsNetworkName", "__Internal")]
 		NSString kAppodealAmazonAdsNetworkName { get; }
 
 		// extern NSString *const kAppodealAppLovinNetworkName;
-		[Field ("kAppodealAppLovinNetworkName", "__Internal")]
+		[Field("kAppodealAppLovinNetworkName", "__Internal")]
 		NSString kAppodealAppLovinNetworkName { get; }
 
 		// extern NSString *const kAppodealChartboostNetworkName;
-		[Field ("kAppodealChartboostNetworkName", "__Internal")]
+		[Field("kAppodealChartboostNetworkName", "__Internal")]
 		NSString kAppodealChartboostNetworkName { get; }
 
 		// extern NSString *const kAppodealFacebookNetworkName;
-		[Field ("kAppodealFacebookNetworkName", "__Internal")]
+		[Field("kAppodealFacebookNetworkName", "__Internal")]
 		NSString kAppodealFacebookNetworkName { get; }
 
 		// extern NSString *const kAppodealInMobiNetworkName;
-		[Field ("kAppodealInMobiNetworkName", "__Internal")]
+		[Field("kAppodealInMobiNetworkName", "__Internal")]
 		NSString kAppodealInMobiNetworkName { get; }
 
 		// extern NSString *const kAppodealMyTargetNetworkName;
-		[Field ("kAppodealMyTargetNetworkName", "__Internal")]
+		[Field("kAppodealMyTargetNetworkName", "__Internal")]
 		NSString kAppodealMyTargetNetworkName { get; }
 
 		// extern NSString *const kAppodealMyTargetBannerNetworkName;
-		[Field ("kAppodealMyTargetBannerNetworkName", "__Internal")]
+		[Field("kAppodealMyTargetBannerNetworkName", "__Internal")]
 		NSString kAppodealMyTargetBannerNetworkName { get; }
 
 		// extern NSString *const kAppodealMopubNetworkName;
-		[Field ("kAppodealMopubNetworkName", "__Internal")]
+		[Field("kAppodealMopubNetworkName", "__Internal")]
 		NSString kAppodealMopubNetworkName { get; }
 
 		// extern NSString *const kAppodealMRAIDNetworkName;
-		[Field ("kAppodealMRAIDNetworkName", "__Internal")]
+		[Field("kAppodealMRAIDNetworkName", "__Internal")]
 		NSString kAppodealMRAIDNetworkName { get; }
 
 		// extern NSString *const kAppodealOpenXNetworkName;
-		[Field ("kAppodealOpenXNetworkName", "__Internal")]
+		[Field("kAppodealOpenXNetworkName", "__Internal")]
 		NSString kAppodealOpenXNetworkName { get; }
 
 		// extern NSString *const kAppodealTapSenceNetworkName;
-		[Field ("kAppodealTapSenceNetworkName", "__Internal")]
+		[Field("kAppodealTapSenceNetworkName", "__Internal")]
 		NSString kAppodealTapSenceNetworkName { get; }
 
 		// extern NSString *const kAppodealUnityAdsNetworkName;
-		[Field ("kAppodealUnityAdsNetworkName", "__Internal")]
+		[Field("kAppodealUnityAdsNetworkName", "__Internal")]
 		NSString kAppodealUnityAdsNetworkName { get; }
 
 		// extern NSString *const kAppodealVungleNetworkName;
-		[Field ("kAppodealVungleNetworkName", "__Internal")]
+		[Field("kAppodealVungleNetworkName", "__Internal")]
 		NSString kAppodealVungleNetworkName { get; }
 
 		// extern NSString *const kAppodealSmaatoNetworkName;
-		[Field ("kAppodealSmaatoNetworkName", "__Internal")]
+		[Field("kAppodealSmaatoNetworkName", "__Internal")]
 		NSString kAppodealSmaatoNetworkName { get; }
 
 		// extern NSString *const kAppodealYandexNetworkName;
-		[Field ("kAppodealYandexNetworkName", "__Internal")]
+		[Field("kAppodealYandexNetworkName", "__Internal")]
 		NSString kAppodealYandexNetworkName { get; }
 
 		// extern NSString *const kAppodealStartAppNetworkName;
-		[Field ("kAppodealStartAppNetworkName", "__Internal")]
+		[Field("kAppodealStartAppNetworkName", "__Internal")]
 		NSString kAppodealStartAppNetworkName { get; }
 
 		// extern NSString *const kAppodealAppNexusNetworkName;
-		[Field ("kAppodealAppNexusNetworkName", "__Internal")]
+		[Field("kAppodealAppNexusNetworkName", "__Internal")]
 		NSString kAppodealAppNexusNetworkName { get; }
 
 		// extern NSString *const kAppodealRubiconNetworkName;
-		[Field ("kAppodealRubiconNetworkName", "__Internal")]
+		[Field("kAppodealRubiconNetworkName", "__Internal")]
 		NSString kAppodealRubiconNetworkName { get; }
 
 		// extern NSString *const kAppodealAvocarrotNetworkName;
-		[Field ("kAppodealAvocarrotNetworkName", "__Internal")]
+		[Field("kAppodealAvocarrotNetworkName", "__Internal")]
 		NSString kAppodealAvocarrotNetworkName { get; }
 
 		// extern NSString *const kAppodealPubNativeNetworkName;
-		[Field ("kAppodealPubNativeNetworkName", "__Internal")]
+		[Field("kAppodealPubNativeNetworkName", "__Internal")]
 		NSString kAppodealPubNativeNetworkName { get; }
 
 		// extern NSString *const kAppodealFlurryNetworkName;
-		[Field ("kAppodealFlurryNetworkName", "__Internal")]
+		[Field("kAppodealFlurryNetworkName", "__Internal")]
 		NSString kAppodealFlurryNetworkName { get; }
 
 		// extern NSString *const kAppodealLiveRailNetworkName;
-		[Field ("kAppodealLiveRailNetworkName", "__Internal")]
+		[Field("kAppodealLiveRailNetworkName", "__Internal")]
 		NSString kAppodealLiveRailNetworkName { get; }
 
 		// extern NSString *const kAppodealSpotXNetworkName;
-		[Field ("kAppodealSpotXNetworkName", "__Internal")]
+		[Field("kAppodealSpotXNetworkName", "__Internal")]
 		NSString kAppodealSpotXNetworkName { get; }
 
 		// extern NSString *const kAppodealVASTNetworkName;
-		[Field ("kAppodealVASTNetworkName", "__Internal")]
+		[Field("kAppodealVASTNetworkName", "__Internal")]
 		NSString kAppodealVASTNetworkName { get; }
 
 		// extern NSString *const kAppodealInnerActiveNetworkName;
-		[Field ("kAppodealInnerActiveNetworkName", "__Internal")]
+		[Field("kAppodealInnerActiveNetworkName", "__Internal")]
 		NSString kAppodealInnerActiveNetworkName { get; }
 
 		// extern NSString *const kAppodealMillenialMediaNetworkName;
-		[Field ("kAppodealMillenialMediaNetworkName", "__Internal")]
+		[Field("kAppodealMillenialMediaNetworkName", "__Internal")]
 		NSString kAppodealMillenialMediaNetworkName { get; }
 
 		// extern NSString *const kAppodealNativeTestNetworkName;
-		[Field ("kAppodealNativeTestNetworkName", "__Internal")]
+		[Field("kAppodealNativeTestNetworkName", "__Internal")]
 		NSString kAppodealNativeTestNetworkName { get; }
 	}
 
@@ -239,82 +239,82 @@ namespace AppodealBinding
 	partial interface UnitSizes
 	{
 		// extern const CGSize kAppodealUnitSize_320x50;
-		[Field ("kAppodealUnitSize_320x50", "__Internal")]
+		[Field("kAppodealUnitSize_320x50", "__Internal")]
 		CGSize kAppodealUnitSize_320x50 { get; }
 
 		// extern const CGSize kAppodealUnitSize_300x250;
-		[Field ("kAppodealUnitSize_300x250", "__Internal")]
+		[Field("kAppodealUnitSize_300x250", "__Internal")]
 		CGSize kAppodealUnitSize_300x250 { get; }
 
 		// extern const CGSize kAppodealUnitSize_728x90;
-		[Field ("kAppodealUnitSize_728x90", "__Internal")]
+		[Field("kAppodealUnitSize_728x90", "__Internal")]
 		CGSize kAppodealUnitSize_728x90 { get; }
 	}
 
 	// @protocol AppodealBannerViewDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType(typeof(NSObject))]
 	interface AppodealBannerViewDelegate
 	{
 		// @optional -(void)bannerViewDidLoadAd:(AppodealBannerView *)bannerView;
-		[Export ("bannerViewDidLoadAd:")]
-		void BannerViewDidLoadAd (AppodealBannerView bannerView);
+		[Export("bannerViewDidLoadAd:")]
+		void BannerViewDidLoadAd(AppodealBannerView bannerView);
 
 		// @optional -(void)bannerView:(AppodealBannerView *)bannerView didFailToLoadAdWithError:(NSError *)error;
-		[Export ("bannerView:didFailToLoadAdWithError:")]
-		void BannerView (AppodealBannerView bannerView, NSError error);
+		[Export("bannerView:didFailToLoadAdWithError:")]
+		void BannerView(AppodealBannerView bannerView, NSError error);
 
 		// @optional -(void)bannerViewDidInteract:(AppodealBannerView *)bannerView;
-		[Export ("bannerViewDidInteract:")]
-		void BannerViewDidInteract (AppodealBannerView bannerView);
+		[Export("bannerViewDidInteract:")]
+		void BannerViewDidInteract(AppodealBannerView bannerView);
 	}
 
 
 	// @interface AppodealBannerView : UIView
-	[BaseType (typeof(UIView))]
+	[BaseType(typeof(UIView))]
 	interface AppodealBannerView
 	{
-		[Wrap ("WeakDelegate")]
+		[Wrap("WeakDelegate")]
 		[NullAllowed]
 		AppodealBannerViewDelegate Delegate { get; set; }
 
 		// @property (nonatomic, weak) id<AppodealBannerViewDelegate> _Nullable delegate;
-		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
+		[NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
 		NSObject WeakDelegate { get; set; }
 
 
 		// @property (readonly, getter = isReady, assign, nonatomic) BOOL ready;
-		[Export ("ready")]
-		bool Ready { [Bind ("isReady")] get; }
+		[Export("ready")]
+		bool Ready { [Bind("isReady")] get; }
 
 		// -(instancetype)initWithSize:(CGSize)size rootViewController:(UIViewController *)rootViewController;
-		[Export ("initWithSize:rootViewController:")]
-		IntPtr Constructor (CGSize size, UIViewController rootViewController);
+		[Export("initWithSize:rootViewController:")]
+		IntPtr Constructor(CGSize size, UIViewController rootViewController);
 
 		// -(void)loadAd;
-		[Export ("loadAd")]
-		void LoadAd ();
+		[Export("loadAd")]
+		void LoadAd();
 	}
 
 	// @interface AppodealMRECView : AppodealBannerView
-	[BaseType (typeof(AppodealBannerView))]
+	[BaseType(typeof(AppodealBannerView))]
 	interface AppodealMRECView
 	{
 		// -(instancetype)initWithRootViewController:(UIViewController *)rootViewController;
-		[Export ("initWithRootViewController:")]
-		IntPtr Constructor (UIViewController rootViewController);
+		[Export("initWithRootViewController:")]
+		IntPtr Constructor(UIViewController rootViewController);
 	}
 
 	// @interface APDImage : NSObject
-	[BaseType (typeof(NSObject))]
+	[BaseType(typeof(NSObject))]
 	interface APDImage
 	{
 		// @property (readonly, assign, nonatomic) CGSize size;
-		[Export ("size", ArgumentSemantic.Assign)]
+		[Export("size", ArgumentSemantic.Assign)]
 		CGSize Size { get; }
 
 		// @property (readonly, copy, nonatomic) NSURL * imageUrl;
-		[Export ("imageUrl", ArgumentSemantic.Copy)]
+		[Export("imageUrl", ArgumentSemantic.Copy)]
 		NSUrl ImageUrl { get; }
 	}
 
@@ -336,15 +336,15 @@ namespace AppodealBinding
 
 	// @protocol AppodealNativeAdDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType(typeof(NSObject))]
 	interface APDNativeAdLoaderDelegate
 	{
 		// - (void)nativeAdLoader:(APDNativeAdLoader *)loader didLoadNativeAd:(APDNativeAd *)nativeAd;
-		[Export ("nativeAdLoader:didLoadNativeAd:")]
-		void NativeAdLoader (APDNativeAdLoader loader, APDNativeAd nativeAd);
+		[Export("nativeAdLoader:didLoadNativeAd:")]
+		void NativeAdLoader(APDNativeAdLoader loader, APDNativeAd nativeAd);
 
 		// - (void)nativeAdLoader:(APDNativeAdLoader *)loader didFailToLoadWithError:(NSError *)error;
-		[Export ("nativeAdLoader:didFailToLoadWithError:")]
+		[Export("nativeAdLoader:didFailToLoadWithError:")]
 		void NativeAdLoader(APDNativeAdLoader loader, NSError error);
 	}
 
@@ -411,39 +411,39 @@ namespace AppodealBinding
 
 
 	// @interface AppodealNativeAd : NSObject
-	[BaseType (typeof(NSObject))]
+	[BaseType(typeof(NSObject))]
 	interface APDNativeAd
 	{
 		// @property (readonly, copy, nonatomic) NSString * title;
-		[Export ("title")]
+		[Export("title")]
 		string Title { get; }
 
 		// @property (readonly, copy, nonatomic) NSString * subtitle;
-		[Export ("subtitle")]
+		[Export("subtitle")]
 		string Subtitle { get; }
 
 		// @property (readonly, copy, nonatomic) NSString * descriptionText;
-		[Export ("descriptionText")]
+		[Export("descriptionText")]
 		string DescriptionText { get; }
 
 		// @property (readonly, copy, nonatomic) NSString * callToActionText;
-		[Export ("callToActionText")]
+		[Export("callToActionText")]
 		string CallToActionText { get; }
 
 		// @property (readonly, copy, nonatomic) NSString * contentRating;
-		[Export ("contentRating")]
+		[Export("contentRating")]
 		string ContentRating { get; }
 
 		// @property (readonly, copy, nonatomic) NSNumber * starRating;
-		[Export ("starRating", ArgumentSemantic.Copy)]
+		[Export("starRating", ArgumentSemantic.Copy)]
 		NSNumber StarRating { get; }
 
 		// @property (readonly, nonatomic, strong) AppodealImage * mainImage;
-		[Export ("mainImage", ArgumentSemantic.Strong)]
+		[Export("mainImage", ArgumentSemantic.Strong)]
 		APDImage MainImage { get; }
 
 		// @property (readonly, nonatomic, strong) AppodealImage * iconImage;
-		[Export ("iconImage", ArgumentSemantic.Strong)]
+		[Export("iconImage", ArgumentSemantic.Strong)]
 		APDImage IconImage { get; }
 
 		// @property (nonatomic, strong, readonly) UIView * adChoicesView;
@@ -455,43 +455,43 @@ namespace AppodealBinding
 		bool Ready { [Bind("isContainsVideo")] get; }
 
 		// -(void)attachToView:(UIView *)view viewController:(UIViewController *)viewController;
-		[Export ("attachToView:viewController:")]
-		void AttachToView (UIView view, UIViewController viewController);
+		[Export("attachToView:viewController:")]
+		void AttachToView(UIView view, UIViewController viewController);
 
 		// -(void)detachFromView;
-		[Export ("detachFromView")]
-		void DetachFromView ();
+		[Export("detachFromView")]
+		void DetachFromView();
 	}
-	
+
 	// @interface Appodeal : NSObject
-	[BaseType (typeof(NSObject))]
+	[BaseType(typeof(NSObject))]
 	[DisableDefaultCtor]
 	interface Appodeal
 	{
 		// +(void)disableNetworkForAdType:(AppodealAdType)adType name:(NSString *)networkName;
 		[Static]
-		[Export ("disableNetworkForAdType:name:")]
-		void DisableNetworkForAdType (AppodealAdType adType, string networkName);
+		[Export("disableNetworkForAdType:name:")]
+		void DisableNetworkForAdType(AppodealAdType adType, string networkName);
 
 		// +(void)disableLocationPermissionCheck;
 		[Static]
-		[Export ("disableLocationPermissionCheck")]
-		void DisableLocationPermissionCheck ();
+		[Export("disableLocationPermissionCheck")]
+		void DisableLocationPermissionCheck();
 
 		// +(void)setAutocache:(BOOL)autocache types:(AppodealAdType)types;
 		[Static]
-		[Export ("setAutocache:types:")]
-		void SetAutocache (bool autocache, AppodealAdType types);
+		[Export("setAutocache:types:")]
+		void SetAutocache(bool autocache, AppodealAdType types);
 
 		// +(BOOL)isAutocacheEnabled:(AppodealAdType)types;
 		[Static]
-		[Export ("isAutocacheEnabled:")]
-		bool IsAutocacheEnabled (AppodealAdType types);
+		[Export("isAutocacheEnabled:")]
+		bool IsAutocacheEnabled(AppodealAdType types);
 
 		// +(void)initializeWithApiKey:(NSString *)apiKey types:(AppodealAdType)types;
 		[Static]
-		[Export ("initializeWithApiKey:types:")]
-		void InitializeWithApiKey (string apiKey, AppodealAdType types);
+		[Export("initializeWithApiKey:types:")]
+		void InitializeWithApiKey(string apiKey, AppodealAdType types);
 
 		// + (void)setFramework:(APDFramework)framework;
 		[Static]
@@ -500,53 +500,53 @@ namespace AppodealBinding
 
 		// +(BOOL)isInitalized;
 		[Static]
-		[Export ("isInitalized")]
+		[Export("isInitalized")]
 		bool IsInitalized { get; }
 
 		// +(void)setInterstitialDelegate:(id<AppodealInterstitialDelegate>)interstitialDelegate;
 		[Static]
-		[Export ("setInterstitialDelegate:")]
-		void SetInterstitialDelegate (AppodealInterstitialDelegate interstitialDelegate);
+		[Export("setInterstitialDelegate:")]
+		void SetInterstitialDelegate(AppodealInterstitialDelegate interstitialDelegate);
 
 		// +(void)setBannerDelegate:(id<AppodealBannerDelegate>)bannerDelegate;
 		[Static]
-		[Export ("setBannerDelegate:")]
-		void SetBannerDelegate (AppodealBannerDelegate bannerDelegate);
+		[Export("setBannerDelegate:")]
+		void SetBannerDelegate(AppodealBannerDelegate bannerDelegate);
 
 		// +(void)setVideoDelegate:(id<AppodealVideoDelegate>)videoDelegate;
 		[Static]
-		[Export ("setVideoDelegate:")]
-		void SetVideoDelegate (AppodealVideoDelegate videoDelegate);
+		[Export("setSkippableVideoDelegate:")]
+		void SetSkippableVideoDelegate(AppodealSkippableVideoDelegate skippableVideoDelegate);
 
 		// +(void)setRewardedVideoDelegate:(id<AppodealRewardedVideoDelegate>)rewardedVideoDelegate;
 		[Static]
-		[Export ("setRewardedVideoDelegate:")]
-		void SetRewardedVideoDelegate (AppodealRewardedVideoDelegate rewardedVideoDelegate);
+		[Export("setRewardedVideoDelegate:")]
+		void SetRewardedVideoDelegate(AppodealRewardedVideoDelegate rewardedVideoDelegate);
 
 		// +(UIView *)banner;
 		[Static]
-		[Export ("banner")]
+		[Export("banner")]
 		UIView Banner { get; }
 
 		// +(BOOL)showAd:(AppodealShowStyle)style rootViewController:(UIViewController *)rootViewController;
 		[Static]
-		[Export ("showAd:rootViewController:")]
-		bool ShowAd (AppodealShowStyle style, UIViewController rootViewController);
+		[Export("showAd:rootViewController:")]
+		bool ShowAd(AppodealShowStyle style, UIViewController rootViewController);
 
 		// + (BOOL)showAd:(AppodealShowStyle)style forPlacement:(NSString *)placement rootViewController:(UIViewController *)rootViewController;
 		[Static]
-		[Export ("showAd:forPlacement:rootViewController:")]
-		bool showAd (AppodealShowStyle style, string placement, UIViewController rootViewController);
+		[Export("showAd:forPlacement:rootViewController:")]
+		bool showAd(AppodealShowStyle style, string placement, UIViewController rootViewController);
 
 		// +(void)cacheAd:(AppodealAdType)type;
 		[Static]
-		[Export ("cacheAd:")]
-		void CacheAd (AppodealAdType type);
+		[Export("cacheAd:")]
+		void CacheAd(AppodealAdType type);
 
 		// +(void)hideBanner;
 		[Static]
-		[Export ("hideBanner")]
-		void HideBanner ();
+		[Export("hideBanner")]
+		void HideBanner();
 
 		// +(void)setDebugEnabled:(BOOL)debugEnabled;
 		[Static]
@@ -555,18 +555,18 @@ namespace AppodealBinding
 
 		// +(void)setTestingEnabled:(BOOL)testingEnabled;
 		[Static]
-		[Export ("setTestingEnabled:")]
-		void SetTestingEnabled (bool testingEnabled);
+		[Export("setTestingEnabled:")]
+		void SetTestingEnabled(bool testingEnabled);
 
 		// +(NSString *)getVersion;
 		[Static]
-		[Export ("getVersion")]
+		[Export("getVersion")]
 		string Version { get; }
 
 		// +(BOOL)isReadyForShowWithStyle:(AppodealShowStyle)showStyle;
 		[Static]
-		[Export ("isReadyForShowWithStyle:")]
-		bool IsReadyForShowWithStyle (AppodealShowStyle showStyle);
+		[Export("isReadyForShowWithStyle:")]
+		bool IsReadyForShowWithStyle(AppodealShowStyle showStyle);
 
 		// + (void)setCustomRule:(NSDictionary*)customRule;
 		[Static]
@@ -590,65 +590,57 @@ namespace AppodealBinding
 
 		// +(void)confirmUsage:(AppodealAdType)adTypes;
 		[Static]
-		[Export ("confirmUsage:")]
-		void ConfirmUsage (AppodealAdType adTypes);
+		[Export("confirmUsage:")]
+		void ConfirmUsage(AppodealAdType adTypes);
+
+		// + (void)setUserId:(NSString *)userId;
+		[Static]
+		[Export("setUserId:")]
+		void SetUserId(NSString userId);
+
+		// + (void)setUserEmail:(NSString*)email;
+		[Static]
+		[Export("setUserEmail:")]
+		void SetUserEmail(NSString email);
+
+		// + (void)setUserBirthday:(NSDate *)birthday;
+		[Static]
+		[Export("setUserBirthday:")]
+		void SetUserBirthday(NSDate birthday);
+
+		// + (void)setUserAge:(NSUInteger)age;
+		[Static]
+		[Export("setUserAge:")]
+		void SetUserAge(uint age);
+
+		// + (void)setUserGender:(AppodealUserGender)gender;
+		[Static]
+		[Export("setUserGender:")]
+		void SetUserGender(AppodealUserGender gender);
+
+		// + (void)setUserOccupation:(AppodealUserOccupation)occupation;
+		[Static]
+		[Export("setUserOccupation:")]
+		void SetUserOccupation(AppodealUserOccupation occupation);
+
+		// + (void)setUserRelationship:(AppodealUserRelationship)relationship;
+		[Static]
+		[Export("setUserRelationship:")]
+		void SetUserRelationship(AppodealUserRelationship relationship);
+
+		// + (void)setUserSmokingAttitude:(AppodealUserSmokingAttitude)smokingAttitude;
+		[Static]
+		[Export("setUserSmokingAttitude:")]
+		void SetUserSmokingAttitude(AppodealUserSmokingAttitude smokingAttitude);
+
+		// + (void)setUserAlcoholAttitude:(AppodealUserAlcoholAttitude)alcoholAttitude;
+		[Static]
+		[Export("setUserAlcoholAttitude:")]
+		void SetUserAlcoholAttitude(AppodealUserAlcoholAttitude alcoholAttitude);
+
+		// + (void)setUserInterests:(NSString *)interests;
+		[Static]
+		[Export("setUserInterests:")]
+		void SetUserInterests(NSString interests);
 	}
-
-	// @interface UserMetadata (Appodeal)
-	[Category]
-	[BaseType (typeof(Appodeal))]
-	interface Appodeal_UserMetadata
-	{
-		// +(void)setUserId:(NSString *)userId;
-		[Static]
-		[Export ("setUserId:")]
-		void SetUserId (string userId);
-
-		// +(void)setUserEmail:(NSString *)email;
-		[Static]
-		[Export ("setUserEmail:")]
-		void SetUserEmail (string email);
-
-		// +(void)setUserBirthday:(NSDate *)birthday;
-		[Static]
-		[Export ("setUserBirthday:")]
-		void SetUserBirthday (NSDate birthday);
-
-		// +(void)setUserAge:(NSUInteger)age;
-		[Static]
-		[Export ("setUserAge:")]
-		void SetUserAge (nuint age);
-
-		// +(void)setUserGender:(AppodealUserGender)gender;
-		[Static]
-		[Export ("setUserGender:")]
-		void SetUserGender (AppodealUserGender gender);
-
-		// +(void)setUserOccupation:(AppodealUserOccupation)occupation;
-		[Static]
-		[Export ("setUserOccupation:")]
-		void SetUserOccupation (AppodealUserOccupation occupation);
-
-		// +(void)setUserRelationship:(AppodealUserRelationship)relationship;
-		[Static]
-		[Export ("setUserRelationship:")]
-		void SetUserRelationship (AppodealUserRelationship relationship);
-
-		// +(void)setUserSmokingAttitude:(AppodealUserSmokingAttitude)smokingAttitude;
-		[Static]
-		[Export ("setUserSmokingAttitude:")]
-		void SetUserSmokingAttitude (AppodealUserSmokingAttitude smokingAttitude);
-
-		// +(void)setUserAlcoholAttitude:(AppodealUserAlcoholAttitude)alcoholAttitude;
-		[Static]
-		[Export ("setUserAlcoholAttitude:")]
-		void SetUserAlcoholAttitude (AppodealUserAlcoholAttitude alcoholAttitude);
-
-		// +(void)setUserInterests:(NSString *)interests;
-		[Static]
-		[Export ("setUserInterests:")]
-		void SetUserInterests (string interests);
-	}
-
 }
-

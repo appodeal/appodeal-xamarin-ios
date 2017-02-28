@@ -156,7 +156,6 @@ namespace AppodealBinding
 		SkippableVideo,
 		VideoOrInterstitial,
 		BannerTop,
-		BannerCenter,
 		BannerBottom,
 		RewardedVideo,
 		Video = SkippableVideo,
