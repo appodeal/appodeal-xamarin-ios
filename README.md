@@ -38,29 +38,21 @@ sharpie bind -sdk iphoneos11.4 Appodeal.framework/Headers/APDDefines.h -scope Ap
 
 This will generate `ApiDefinitions.cs` file with imports and interfaces and `StructsAndEnums.cs` if header contains some enums and structures. Rename this files to something like `ApiDefinitionsAPDDefines.cs`, `StructsAndEnumsAPDDefines.cs` and leave it there.
 
-Now do the same process for each base header, run this command:
+Now do the same process for each header in `Appodeal.framework/Headers` folder, run this command:
 
 ```bash
 sharpie bind -sdk iphoneos11.4 Appodeal.framework/Headers/[header] -scope Appodeal.framework/Headers -c -F .
 ```
 
-`[header]` should be replaces to the header name. Here the list of base headers:
+`[header]` should be replaces to the header name.
 
-```
-APDBannerView.h
-APDDefines.h
-APDImage.h
-APDMediaView.h
-APDMRECView.h
-APDNativeAd.h
-APDNativeAdLoader.h
-Appodeal.h
-```
 
 Now Open `AppodealBinding.sln` with *Visual Studio for Mac*. Open `ApiDefinition.cs` and `StructsAndEnums.cs` source files.
 Then open your generated `ApiDefinitions[name].cs` and `StructsAndEnums[name].cs` one by one and copy new code to corresponding source file of `AppodealBinding.sln`
 
-Note that `sharpie` generated some blocks with errors and with `[verify(*)]` blocks. Lets review some usual errors you should fix:
+Warning: `ApiDefinition.cs` and `StructsAndEnums.cs` should be under `AppodealBinding` *namespace*.
+
+Note: `sharpie` generated some blocks with errors and with `[verify(*)]` blocks. Lets review some usual errors you should fix:
 + Interfaces has the name `Constants` and verify block.
   * Check the name of included constants, for example it includes `kAppodealUnitSize_320x50`, `kAppodealUnitSize_300x250`, `kAppodealUnitSize_728x90`. As you see it has identical content `AppodealUnitSize`, so change interface name from `Constants` to `AppodealUnitSize`.
 + All `public enum`s with `nuint` or `nint` type.
@@ -82,6 +74,29 @@ Note that `sharpie` generated some blocks with errors and with `[verify(*)]` blo
         [Static]
         [Export("isInitalized")]
         bool IsInitalized { get; }
+
++ The namespace 'AppodealBinding' already contains a definition for 'APDUserInfo'
+ * Remove one copy of APDUserInfo interface
+
++ Type 'APDRewardedVideoDelegate' already defines a member called 'RewardedVideo' with the same parameter types (CS0111) | Type 'APDSkippableVideoDelegate' already defines a member called 'SkippableVideo' with the same parameter types | Type 'APDBannerViewRequestDelegate' already defines a member called 'BannerView' with the same parameter types | Type 'APDInterstitalAdRequestDelegate' already defines a member called 'Interstitial' with the same parameter types
+ * Copy name for method from [Export()] line and paste to void. Example:
+ 
+        // @optional -(void)rewardedVideo:(APDRewardedVideo *)rewardedVideo didFailToPresentWithError:(NSError *)error;
+        [Export("rewardedVideo:didFailToPresentWithError:")]
+        void RewardedVideo(APDRewardedVideo rewardedVideo, NSError error);
+
+ should become 
+ 
+        // @optional -(void)rewardedVideo:(APDRewardedVideo *)rewardedVideo didFailToPresentWithError:(NSError *)error;
+        [Export("rewardedVideo:didFailToPresentWithError:")]
+        void RewardedVideoDidFailToPresentWithError(APDRewardedVideo rewardedVideo, NSError error);
+
++ The type or namespace name 'VerifyAttribute' could not be found (are you missing a using directive or an assembly reference?) (CS0246)
+ * Remove [Verify(MethodToProperty)] line.
++ The type or namespace name 'IAPDUserInfo' could not be found (are you missing a using directive or an assembly reference?) 
+ * Remove this intefrace.
++ The type or namespace name 'APDUserInfo' could not be found (are you missing a using directive or an assembly reference?)
+ * Remove this method.
 
 7. In the folder where you have extracted *Appodeal iOS SDK* open `Appodeal.framework` as folder. There should be `Appodeal`
 binnary file. Rename it to `Appodeal.a` and copy to the folder with AppodealBinding project.
