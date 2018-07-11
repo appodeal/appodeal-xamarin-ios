@@ -47,9 +47,11 @@
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="..\..\..\..\..\..\..\Downloads\appodeal-xamarin-ios-test-max\demoAppodeal\obj\iPhoneSimulator\Release\mtouch-cache\libXamarinSaveDictionary.a">
+    <NativeReference Include="Appodeal.a">
       <Kind>Static</Kind>
       <SmartLink>False</SmartLink>
+      <Frameworks>AdSupport AudioToolbox AVFoundation CFNetwork CoreGraphics CoreImage CoreLocation CoreMedia CoreMotion CoreTelephony EventKitUI GLKit ImageIO JavaScriptCore MediaPlayer MessageUI MobileCoreServices QuartzCore Security StoreKit SystemConfiguration UIKit WebKit</Frameworks>
+      <LinkerFlags>-ObjC -lc++ -lsqlite3 -lxml2.2 -lz</LinkerFlags>
     </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
