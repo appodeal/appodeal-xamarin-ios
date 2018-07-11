@@ -70,21 +70,18 @@ Note that `sharpie` generated some blocks with errors and with `[verify(*)]` blo
 + Some methods ot interfaces contains `[Verify(*)]` lines. It is the code you should review.
   * Usually it is generated for getters or setters, just remove `[Verify(*)]` line and save file. For example:
         
-        ```c#
         // +(BOOL)isInitalized;
         [Static]
         [Export("isInitalized")]
         [Verify(MethodToProperty)]
         bool IsInitalized { get; }
-        ```
+
   * Should look like:
         
-        ```c#
         // +(BOOL)isInitalized;
         [Static]
         [Export("isInitalized")]
         bool IsInitalized { get; }
-        ```
 
 7. In the folder where you have extracted *Appodeal iOS SDK* open `Appodeal.framework` as folder. There should be `Appodeal`
 binnary file. Rename it to `Appodeal.a` and copy to the folder with AppodealBinding project.
