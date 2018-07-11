@@ -114,9 +114,13 @@ binnary file. Rename it to `Appodeal.a` and copy to the folder with AppodealBind
 9. Right Click on appeared in *Native References* `Appodeal` and click `Properties`. If window with peroperties blank, press on `Appodeal` in *Native References* one more time.
 
 10. In the `Frameworks` field of `Appodeal` *Properties* check if any changes were made for *Native Appodeal iOS SDK*. Check [stable](https://appodeal.com/sdk/ios) for stable sdk, and [beta](https://appodeal.com/sdk/ios_beta) for beta sdk in section *Manual Integration* -> step #3. Libraries with `lib` prefix should be passed to `Linker Flags` as `-l`, for example `libc++` should be passed as `-lc++`.
+
 Current list of Frameworks for Appodeal iOS SDK 2.1.10:
+
 `AdSupport AudioToolbox AVFoundation CFNetwork CoreGraphics CoreImage CoreLocation CoreMedia CoreMotion CoreTelephony EventKitUI GLKit ImageIO JavaScriptCore MediaPlayer MessageUI MobileCoreServices QuartzCore Security StoreKit SystemConfiguration UIKit WebKit`
+
 Current list of `Linker Flags` for Appodeal iOS SDK 2.1.10:
+
 `-lc++ -lsqlite3 -lxml2.2 -lz`
 
 11. Select `Release` on the top and press `Build`. `AppodealBindings.dll` should appear in `bin/Release` folder.
