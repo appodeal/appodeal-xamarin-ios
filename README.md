@@ -2,7 +2,7 @@
 
 ## Download
 
-
+[![](https://img.shields.io/badge/download-ios-grey.svg)](https://s3.amazonaws.com/appodeal-xamarin/iOS/2.1.10/Appodeal-Xamarin-iOS-2.1.10-100718.zip)
 
 ## How to update manually
 
@@ -124,3 +124,111 @@ Current list of `Linker Flags` for Appodeal iOS SDK 2.1.10:
 `-lc++ -lsqlite3 -lxml2.2 -lz`
 
 11. Select `Release` on the top and press `Build`. `AppodealBindings.dll` should appear in `bin/Release` folder.
+
+## Binding Integration
+
+### Plugin Files Integration
+
+Go the the "Project" -> "Edit references" and add there "AppodealBinding.dll" in ".Net Assembly" tab.
+
+![netassembly](https://i.gyazo.com/c8932ef03fbc79ee4ba6247b91f96dcd.png)
+
+Next step is to add Resources from iOS SDK you have downloaded earlier. Right-click on Resources in your project tree view, select "Add files from folder" and choose "Resources" folder from unpacked iOS SDK. After that you should see something like that:
+
+![resources](https://i.gyazo.com/57efdcbab05a31cf0e530f9006862819.png)
+
+For successful complie you should set these settings in your Project options (Note: plugin is not compatible armv7s architecture) :
+
+![appsettings](https://i.gyazo.com/ef1e4fdde3b40fb51214557cb14152b7.png)
+
+### API Integration
+
+#### Ad Types & Show Styles
+
++ AppodealAdType.Banner
++ AppodealAdType.Interstitial (Fullscreen ad)
++ AppodealAdType.Mrec (Banner 300*250)
++ AppodealAdType.NativeAd
++ AppodealAdType.NonSkippableVideo
++ AppodealAdType.RewardedVideo (same as NonSkippableVideo but with reward - use only ONE type of NonSkippableVideo(RewardedVideo is more likely to use))
+
+Ad types can be combined using "|" operator. For example AppodealAdType.Interstitial | AppodealAdType.NonSkippableVideo
+
++ AppodealShowStyle.BannerTop
++ AppodealShowStyle.BannerBottom
++ AppodealShowStyle.Interstitial (Banner 300*250)
++ AppodealShowStyle.Mrec
++ AppodealShowStyle.NonSkippableVideo
++ AppodealShowStyle.RewardedVideo 
++ AppodealShowStyle.NativeAd
+
+#### SDK Initialization
+
+```csharp
+Appodeal.SetFramework(APDFramework.Xamarin);
+Appodeal.InitializeWithApiKey(YOUR_APPLICATION_KEY, SELECTED_AD_TYPES);
+```
+
+In AppDelegate.FinishedLaunching method add Appodeal initialization:
+
+```charp
+using AppodealAds;
+
+public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
+{
+// Override point for customization after application launch.
+// If not required for your application you can safely delete this method
+  String appKey = "e7e04e54ae0a8d28cff2f7e7e7d094e78b2a09743be2cc4a";
+  
+Appodeal.SetFramework(APDFramework.APDFrameworkXamarin);  //this is required method, just copy-paste it before init
+Appodeal.InitializeWithApiKey(appKey, AppodealAdType.Banner | AppodealAdType.Interstitial);
+
+return true;
+}
+```
+
+#### Display Ad
+
+```charp
+Appodeal.ShowAd(SHOW_STYLE, UIApplication.SharedApplication.Windows[0].RootViewController);
+```
+
+#### Setting up callbacks
+
+##### Interstitial
+
+Add your 
+```csharp
+public class MyInterstitialDelegate : AppodealInterstitialDelegate
+{
+    public override void InterstitialDidLoadAdisPrecache(bool precache) {
+        Console.WriteLine("InterstitialDidLoadAdisPrecache");
+    }
+
+    public override void InterstitialDidFailToLoadAd() { 
+        Console.WriteLine("InterstitialDidFailToLoadAd");
+    }
+
+    public override void InterstitialDidFailToPresent() { 
+        Console.WriteLine("InterstitialDidFailToPresent");
+    }
+
+    public override void InterstitialWillPresent() { 
+        Console.WriteLine("InterstitialWillPresent");
+    }
+
+    public override void InterstitialDidDismiss() {
+        Console.WriteLine("InterstitialDidDismiss");
+    }
+
+    public override void InterstitialDidClick() { 
+        Console.WriteLine("InterstitialDidClick");
+    }
+}
+```
+
+Then set it after SDK initialization:
+
+```csharp
+Appodeal.SetInterstitialDelegate(new MyInterstitialDelegate());
+```
