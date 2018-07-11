@@ -54,49 +54,57 @@ Warning: `ApiDefinition.cs` and `StructsAndEnums.cs` should be under `AppodealBi
 
 Note: `sharpie` generated some blocks with errors and with `[verify(*)]` blocks. Lets review some usual errors you should fix:
 + Interfaces has the name `Constants` and verify block.
-  * Check the name of included constants, for example it includes `kAppodealUnitSize_320x50`, `kAppodealUnitSize_300x250`, `kAppodealUnitSize_728x90`. As you see it has identical content `AppodealUnitSize`, so change interface name from `Constants` to `AppodealUnitSize`.
+   * Check the name of included constants, for example it includes `kAppodealUnitSize_320x50`, `kAppodealUnitSize_300x250`, `kAppodealUnitSize_728x90`. As you see it has identical content `AppodealUnitSize`, so change interface name from `Constants` to `AppodealUnitSize`.
 + All `public enum`s with `nuint` or `nint` type.
-  * Change `nuint` or `nint` to `ulong`.
+   * Change `nuint` or `nint` to `ulong`.
 + Some `public enum`s contains numbers with `L` or `uL` suffix.
-  * Remove this suffixes.
+   * Remove this suffixes.
 + Some methods ot interfaces contains `[Verify(*)]` lines. It is the code you should review.
-  * Usually it is generated for getters or setters, just remove `[Verify(*)]` line and save file. For example:
+   * Usually it is generated for getters or setters, just remove `[Verify(*)]` line and save file. For example:
         
+        ```
         // +(BOOL)isInitalized;
         [Static]
         [Export("isInitalized")]
         [Verify(MethodToProperty)]
         bool IsInitalized { get; }
+        ```
 
-  * Should look like:
+   * Should look like:
         
+        ```
         // +(BOOL)isInitalized;
         [Static]
         [Export("isInitalized")]
         bool IsInitalized { get; }
+        ```
 
 + The namespace 'AppodealBinding' already contains a definition for 'APDUserInfo'
- * Remove one copy of APDUserInfo interface
+  * Remove one copy of APDUserInfo interface
 
 + Type 'APDRewardedVideoDelegate' already defines a member called 'RewardedVideo' with the same parameter types (CS0111) | Type 'APDSkippableVideoDelegate' already defines a member called 'SkippableVideo' with the same parameter types | Type 'APDBannerViewRequestDelegate' already defines a member called 'BannerView' with the same parameter types | Type 'APDInterstitalAdRequestDelegate' already defines a member called 'Interstitial' with the same parameter types
- * Copy name for method from [Export()] line and paste to void. Example:
- 
-        // @optional -(void)rewardedVideo:(APDRewardedVideo *)rewardedVideo didFailToPresentWithError:(NSError *)error;
-        [Export("rewardedVideo:didFailToPresentWithError:")]
-        void RewardedVideo(APDRewardedVideo rewardedVideo, NSError error);
+   * Copy name for method from [Export()] line and paste to void. Example:
+        
+```
+// @optional -(void)rewardedVideo:(APDRewardedVideo *)rewardedVideo didFailToPresentWithError:(NSError *)error;
+[Export("rewardedVideo:didFailToPresentWithError:")]
+void RewardedVideo(APDRewardedVideo rewardedVideo, NSError error);
+```
 
- should become 
- 
-        // @optional -(void)rewardedVideo:(APDRewardedVideo *)rewardedVideo didFailToPresentWithError:(NSError *)error;
-        [Export("rewardedVideo:didFailToPresentWithError:")]
-        void RewardedVideoDidFailToPresentWithError(APDRewardedVideo rewardedVideo, NSError error);
+should become 
+
+```
+// @optional -(void)rewardedVideo:(APDRewardedVideo *)rewardedVideo didFailToPresentWithError:(NSError *)error;
+[Export("rewardedVideo:didFailToPresentWithError:")]
+void RewardedVideoDidFailToPresentWithError(APDRewardedVideo rewardedVideo, NSError error);
+```
 
 + The type or namespace name 'VerifyAttribute' could not be found (are you missing a using directive or an assembly reference?) (CS0246)
- * Remove [Verify(MethodToProperty)] line.
+   * Remove [Verify(MethodToProperty)] line.
 + The type or namespace name 'IAPDUserInfo' could not be found (are you missing a using directive or an assembly reference?) 
- * Remove this intefrace.
+   * Remove this intefrace.
 + The type or namespace name 'APDUserInfo' could not be found (are you missing a using directive or an assembly reference?)
- * Remove this method.
+   * Remove this method.
 
 7. In the folder where you have extracted *Appodeal iOS SDK* open `Appodeal.framework` as folder. There should be `Appodeal`
 binnary file. Rename it to `Appodeal.a` and copy to the folder with AppodealBinding project.
