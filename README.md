@@ -197,7 +197,8 @@ Appodeal.ShowAd(SHOW_STYLE, UIApplication.SharedApplication.Windows[0].RootViewC
 
 ##### Interstitial
 
-Add your 
+Add your custom class with inherited `AppodealInterstitialDelegate`:
+
 ```csharp
 public class MyInterstitialDelegate : AppodealInterstitialDelegate
 {
@@ -231,4 +232,273 @@ Then set it after SDK initialization:
 
 ```csharp
 Appodeal.SetInterstitialDelegate(new MyInterstitialDelegate());
+```
+
+##### Banner
+
+Add your custom class with inherited `AppodealBannerDelegate`:
+
+```csharp
+public class MyBannerDelegate : AppodealBannerDelegate
+{
+    public override void BannerDidFailToLoadAd()
+    {
+        Console.WriteLine("BannerDidFailToLoadAd");
+    }
+
+    public override void BannerDidLoadAdIsPrecache(bool precache)
+    {
+        Console.WriteLine("BannerDidLoadAdIsPrecache");
+    }
+
+    public override void BannerDidShow()
+    {
+        Console.WriteLine("BannerDidShow");
+    }
+
+    public override void BannerDidClick()
+    {
+        Console.WriteLine("BannerDidClick");
+    }
+
+    public override void BannerDidRefresh()
+    {
+        Console.WriteLine("BannerDidRefresh");
+    }
+}
+```
+
+Then set it after SDK initialization:
+
+```csharp
+Appodeal.SetBannerDelegate(new MyBannerDelegate());
+```
+
+##### Rewarded Video
+
+Add your custom class with inherited `AppodealRewardedVideoDelegate`:
+
+```csharp
+public class MyRewardedVideoDelegate : AppodealRewardedVideoDelegate
+{
+    public override void RewardedVideoDidLoadAd()
+    {
+        Console.WriteLine("RewardedVideoDidLoadAd");
+    }
+
+    public override void RewardedVideoWillDismiss()
+    {
+        Console.WriteLine("RewardedVideoWillDismiss");
+    }
+
+    public override void RewardedVideoDidFailToLoadAd()
+    {
+        Console.WriteLine("RewardedVideoDidFailToLoadAd");
+    }
+
+    public override void RewardedVideoDidClick()
+    {
+        Console.WriteLine("RewardedVideoDidClick");
+    }
+
+    public override void RewardedVideoDidPresent()
+    {
+        Console.WriteLine("RewardedVideoDidPresent");
+    }
+
+    public override void RewardedVideoDidFailToPresent()
+    {
+        Console.WriteLine("RewardedVideoDidFailToPresent");
+    }
+
+    public override void RewardedVideoDidFinish(nuint rewardAmount, string rewardName)
+    {
+        Console.WriteLine("RewardedVideoDidFinish");
+    }
+}
+```
+
+Then set it after SDK initialization:
+
+```csharp
+Appodeal.SetRewardedVideoDelegate(new MyRewardedVideoDelegate());
+```
+
+##### Non Skippable Video
+
+Add your custom class with inherited `AppodealNonSkippableVideoDelegate`:
+
+```csharp
+public class MyNonSkippableVideoViewDelegate : AppodealNonSkippableVideoDelegate
+{
+    public override void NonSkippableVideoDidLoadAd()
+    {
+        Console.WriteLine("NonSkippableVideoDidLoadAd");
+    }
+
+    public override void NonSkippableVideoDidFailToLoadAd()
+    {
+        Console.WriteLine("NonSkippableVideoDidFailToLoadAd");
+    }
+
+    public override void NonSkippableVideoDidClick()
+    {
+        Console.WriteLine("NonSkippableVideoDidClick");
+    }
+
+    public override void NonSkippableVideoDidPresent()
+    {
+        Console.WriteLine("NonSkippableVideoDidPresent");
+    }
+
+    public override void NonSkippableVideoDidFailToPresent()
+    {
+        Console.WriteLine("NonSkippableVideoDidFailToPresent");
+    }
+
+    public override void NonSkippableVideoWillDismiss()
+    {
+        Console.WriteLine("NonSkippableVideoWillDismiss");
+    }
+
+    public override void NonSkippableVideoDidFinish()
+    {
+        Console.WriteLine("NonSkippableVideoDidFinish");
+    }
+}
+```
+
+Then set it after SDK initialization:
+
+```csharp
+Appodeal.SetNonSkippableVideoDelegate(new MyNonSkippableVideoViewDelegate());
+```
+
+### Native ads integration
+
+First step is to create class for initializing native ad loader callbacks:
+
+```csharp
+public class MyNativeAdDelegate : APDNativeAdLoaderDelegate
+{
+  ViewController _controller = null;
+
+      public MyNativeAdDelegate(ViewController controller)
+  {		
+    _controller = controller;		
+  }
+
+      public override void DidFailToLoadWithError(APDNativeAdLoader loader, NSError error)
+      {
+          Console.WriteLine("APDNativeAd DidFailToLoadWithError");
+      }
+
+      public override void DidLoadNativeAds(APDNativeAdLoader loader, APDNativeAd[] nativeAds)
+      {
+          Console.WriteLine("APDNativeAd DidLoadNativeAds");
+          _controller.MyNativeAdDelegateServiceDidLoad(nativeAds[0]);
+      }				
+
+}
+```
+
+Second step is to create nativeAdLoader and nativeAd in your ViewController class Also you need to create public method to get all native attributes, you can also add here mediaView to display media content from loaded native ad:
+
+```csharp
+public partial class ViewController : UIViewController
+{
+		APDNativeAdLoader nativeAdLoader;
+		APDNativeAd nativeAd;
+		APDMediaView myMediaView; //media view is used to attach some media content from native ad to your view
+
+    public void MyDelegateServiceDidLoad(APDNativeAd nativeAd)
+		{
+			this.nativeAd = nativeAd;
+			UIView view = new UIView(); //creating a view to attach native ad 
+			view.Frame = new System.Drawing.Rectangle(10, 350, 200, 200); //required
+			view.BackgroundColor = UIColor.FromRGB(96, 36, 36); //optional
+			View.AddSubview(view);
+			this.nativeAd.AttachToView(view, UIApplication.SharedApplication.Windows[0].RootViewController); //attaching native ad to created view
+			this.myMediaView.SetNativeAd(this.nativeAd, this); //setting media view to loaded native ad
+			View.AddSubview(this.myMediaView); 
+			Console.WriteLine(this.nativeAd.Title);
+			Console.WriteLine(this.nativeAd.Subtitle);
+			Console.WriteLine(this.nativeAd.StarRating);
+			Console.WriteLine(this.nativeAd.MainImage); //APDImage inheritor
+			Console.WriteLine(this.nativeAd.IconImage); //APDImage inheritor
+			Console.WriteLine(this.nativeAd.DescriptionText);
+			Console.WriteLine(this.nativeAd.ContentRating);
+			Console.WriteLine(this.nativeAd.CallToActionText);
+			Console.WriteLine(this.nativeAd.AdChoicesView); //UIView inheritor, should be displayed anyway if it's not nil
+		}
+	...
+	}
+```
+
+Last step is creating native ad loader in your view controller, delegating it and loading the ad. Also you can create mediaView here with needed frame:
+
+```csharp
+public override void ViewDidLoad ()
+{
+  ...
+  this.nativeAdLoader = new APDNativeAdLoader();		
+  this.myMediaView = new APDMediaView(new CGRect(10, 350, 200, 200));
+  this.nativeAdLoader.Delegate = new MyDelegate(this);
+  this.nativeAdLoader.LoadAdWithType(APDNativeAdType.APDNativeAdTypeAuto);
+  ...
+}
+```
+
+### Advanced Features
+
+Enabling test mode
+
+```csharp
+Appodeal.SetTestingEnabled(true);
+```
+
+Checking if ad is loaded
+
+```csharp
+Appodeal.IsReadyForShowWithStyle(showStyle);
+```
+
+Manual ad caching
+
+```csharp
+Appodeal.CacheAd(adTypes);
+```
+
+You should disable automatic caching before SDK initialization using `SetAutoCache(false, adTypes)`.
+
+Enabling or disabling automatic caching
+
+```csharp
+Appodeal.SetAutoCache(adTypes, false);
+```
+
+Should be used before SDK initialization
+
+Disabling networks
+
+```csharp
+Appodeal.DisableNetworkForAdType(adTypes, (String)network);
+```
+
+Enable/disable smart banners
+
+```csharp
+Appodeal.SetSmartBannersEnabled(true);
+```
+
+Enable/disable banner refresh animation
+
+```csharp
+Appodeal.SetBannerAnimationEnabled(true);
+```
+
+Enable/disable banner background
+
+```csharp
+Appodeal.SetBannerBackgroundVisible(true);
 ```
