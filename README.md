@@ -171,25 +171,25 @@ Appodeal.InitializeWithApiKey(YOUR_APPLICATION_KEY, SELECTED_AD_TYPES);
 
 In AppDelegate.FinishedLaunching method add Appodeal initialization:
 
-```charp
+```csharp
 using AppodealAds;
 
 public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 {
-// Override point for customization after application launch.
-// If not required for your application you can safely delete this method
-  String appKey = "e7e04e54ae0a8d28cff2f7e7e7d094e78b2a09743be2cc4a";
+	// Override point for customization after application launch.
+	// If not required for your application you can safely delete this method
+  	String appKey = "e7e04e54ae0a8d28cff2f7e7e7d094e78b2a09743be2cc4a";
   
-Appodeal.SetFramework(APDFramework.APDFrameworkXamarin);  //this is required method, just copy-paste it before init
-Appodeal.InitializeWithApiKey(appKey, AppodealAdType.Banner | AppodealAdType.Interstitial);
+	Appodeal.SetFramework(APDFramework.APDFrameworkXamarin);  //this is required method, just copy-paste it before init
+	Appodeal.InitializeWithApiKey(appKey, AppodealAdType.Banner | AppodealAdType.Interstitial);
 
-return true;
+	return true;
 }
 ```
 
 #### Display Ad
 
-```charp
+```csharp
 Appodeal.ShowAd(SHOW_STYLE, UIApplication.SharedApplication.Windows[0].RootViewController);
 ```
 
